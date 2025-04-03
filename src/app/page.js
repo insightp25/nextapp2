@@ -3,6 +3,8 @@ export default function Home() {
     <>
       <h2>WELCOME - src/app/page.js</h2>
       hello, nextjs!
+      <br />
+      <img src="/lftyc.png" ></img>
     </>
   );
 }

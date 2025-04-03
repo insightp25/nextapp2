@@ -120,6 +120,7 @@ export default function Home() {
 
 4/3.03:30 81%
 4/3.21:44 78%
+01:35 45%
 
 </br></br></br>
 
@@ -205,6 +206,8 @@ export default function Read(props) {
 
 
 
+
+
 </br></br></br>
 
 # single page application
@@ -237,6 +240,7 @@ nextjs의 단점 중 하나
 
 - (참고 - 강의 코멘트 중)nextjs에 업데이트가 있었는지 개발환경에서는 미리 데이터를 읽어오는 prefetch 기능이 작동하지 않는 것 같습니다. 대신 `npm run build && npm run start`를 해서 배포판을 실행하면 화면에 링크가 노출되는 것만으로도 미리 데이터를 받아오네요.
   - 하지만 이 역시 실제 실행해보면 링크들의 데이터를 미리 읽어옴에도 불구하고, 그리고 재방문시에도 매번 새로 데이터를 읽어옴을 알 수 있다...왜?
+    - 정적 페이지들은 prefetch후 방문시 서버와 통신 안하고 바로 읽어옴. 동적 라우팅 연관 페이지들은 요청시마다 불러옴.
 
 ```json
 // nextjs 버전 현황
@@ -277,12 +281,65 @@ nextjs의 단점 중 하나
 
 
 
+
+
+</br></br></br>
+
+# 정적 자원 사용하기
+
+이미지와 같은 정적인 콘텐츠는 `public` 폴더에 위치시킨다.
+- 이미지 경로는 `/`를 입력하면 `public`을 자동으로 가리키게 된다.
+```js
+export default function Home() {
+  return (
+    <>
+      <h2>WELCOME - src/app/page.js</h2>
+      <br />
+      <img src="/lftyc.png" ></img>
+    </>
+  );
+}
+
+```
+
+
+
+
+
+
+
+</br></br></br>
+
+# CSS
+
+root layout 파일의 `import "./globals.css";` -> `global.css` 수정하면 전역적으로 스타일 적용
+
+```css
+// global.css 예
+h1 a {
+    text-decoration: none;
+    color: black;
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
 </br></br></br>
 
 # 
 
 
-```js
+```css
+
 ```
 
 
@@ -298,46 +355,12 @@ nextjs의 단점 중 하나
 
 ```js
 ```
-
-
-
-
-
 
 
 
 npx json-server --port 9999 --watch db.json
 (db.json 생성 안되고 서버 실행 안될시 아래로 실행)
 npx json-server@0.17.4 --port 9999 --watch db.json
-
-
-
-
-
-
-</br></br></br>
-
-# 
-
-
-```js
-```
-
-
-
-
-
-
-
-</br></br></br>
-
-# 
-
-
-```js
-```
-
-
 
 
 
