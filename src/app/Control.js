@@ -12,7 +12,7 @@ export default function Control() {
       {id ? <>
         <li><Link href={"/update/" + id}>update</Link></li>
         <li><input type="button" value="delete" onClick={()=>{
-          fetch(`http://localhost:9999/topics/` + id, {
+          fetch(process.env.NEXT_PUBLIC_API_URL +`topics/` + id, {
             method: "DELETE"
           })
           .then(resp=>resp.json())

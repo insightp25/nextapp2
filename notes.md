@@ -657,14 +657,39 @@ export default function Control() {
 
 </br></br></br>
 
-# 
+# 환경변수 & 마무리
 
+api 주소 하드코딩 문제 해결
+
+docs - building your application - configuring - environment variables
+
+보안상 이유로 환경변수 사용시 server-side component와 client-side component가 사용법이 다르다
 
 ```js
+// .env.local
+API_URL=http://localhost:9999/
+```
+ssc의 경우:
+```js
+// src/app/layout.js
+export default async function RootLayout({ children }) {
+  const resp = await fetch(process.env.API_URL + "topics");
 ```
 
+csc의 경우:
+```js
+// .env.local
+// 접두어로 NEXT_PUBLIC_을 붙인다
+NEXT_PUBLIC_API_URL=http://localhost:9999/
+```
+```js
+// src/app/create/page.js
+fetch(process.env.NEXT_PUBLIC_API_URL + "topics", options)
+```
 
-
+그 외
+- `.gitignore`에 기본적으로 `.env*`처럼 환경변수 파일은 버전관리 못하게 되어있다
+- 환경 변수 파일을 공유하고 싶다면(형식을 다른 사람들이 알아야 할 때), `example.env.local` 식으로 만들어서 공유 -> 이후 파일명 접미사 등을 바꿔 배포 가능
 
 
 
