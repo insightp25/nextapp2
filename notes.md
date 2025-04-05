@@ -459,7 +459,21 @@ useEffect(() => {
 3. 서버에서 가져온 id/비밀번호 등 민감한 정보가 노출되고 보안 문제를 일으킬 수 있다.
 
 
+### 해결
+```js
+export default async function RootLayout({ children }) {
+  const resp = await fetch("http://localhost:9999/topics")
+  const topics = await resp.json();
 
+  return ();
+}
+```
+자료를 받아 동적으로 생성한 후에 최종적으로 js 코드 등은 빼고 정적인 내용만 전송
+
+장점:
+1. js를 전송하지 않으므로 용량이 적다
+2. `layout.js`와 `fetch("http://localhost:9999/topics")`를 실행하는 서버가 같은 서버이거나 가까이 존재한다면 서버에서 fetch하는 동작이 빠르게 끝나게 된다.
+3. 서버 쪽에서 렌더링을 끝내고 전송하므로 js가 없어도 잘 동작한다.
 
 
 
