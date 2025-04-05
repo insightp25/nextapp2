@@ -329,48 +329,6 @@ h1 a {
 
 
 
-
-
-
-
-</br></br></br>
-
-# 
-
-
-```css
-
-```
-
-
-
-
-
-
-
-</br></br></br>
-
-# 
-
-
-```js
-```
-
-
-4/4.02:30 83%
-
-
-npx json-server --port 9999 --watch db.json
-(db.json 생성 안되고 서버 실행 안될시 아래로 실행)
-npx json-server@0.17.4 --port 9999 --watch db.json
-
-
-
-
-
-
-
-
 </br></br></br>
 
 # backend
@@ -474,6 +432,85 @@ export default async function RootLayout({ children }) {
 1. js를 전송하지 않으므로 용량이 적다
 2. `layout.js`와 `fetch("http://localhost:9999/topics")`를 실행하는 서버가 같은 서버이거나 가까이 존재한다면 서버에서 fetch하는 동작이 빠르게 끝나게 된다.
 3. 서버 쪽에서 렌더링을 끝내고 전송하므로 js가 없어도 잘 동작한다.
+
+
+
+
+
+
+
+</br></br></br>
+
+# 글 읽기
+
+
+```js
+// src/app/read/[id]/page.js
+export default async function Read(props) {
+    const resp = await fetch(`http://localhost:9999/topics/${props.params.id}`);
+    const topic = await resp.json();
+    return (
+        <>
+            <h2>{topic.title}</h2>
+            {topic.body}
+        </>
+    )
+}
+```
+
+### 오류 노트
+- read/1 로 갈때 Unexpected token N in JSON at position 0 오류 발생
+```json
+// error 발생
+{
+  "topics": [
+    {
+      "id": 1, // 문제
+      "title": "HTML",
+      "body": "HTML is ..."
+    },
+//...
+}
+```
+디버깅
+- 클라이언트가 /read/1에 접근 → props.params.id = "1".
+- fetch('http://localhost:9999/topics/1') 호출.
+- 서버가 id: 1(숫자)을 기대했지만, 요청은 id: "1"(문자열)로 전달됨.
+- 서버가 이를 잘못 처리해서 "Not Found" 반환.
+- resp.json()이 이를 파싱하려다 Unexpected token N in JSON at position 0 오류 발생.
+
+해결
+- id값이 숫자와 문자열간 불일치로 문제 발생. "id" : 1 의 형태를 "id" : "1" 형태로 변경
+
+```json
+// error 해결
+{
+  "topics": [
+    {
+      "id": "1", // 문자열로 변경
+      "title": "HTML",
+      "body": "HTML is ..."
+    },
+//...
+}
+```
+
+
+
+
+
+</br></br></br>
+
+# 
+
+
+```js
+```
+
+
+
+
+
 
 
 
