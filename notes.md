@@ -625,10 +625,28 @@ export default async function Read(props) {
 
 </br></br></br>
 
-# 
+# 글 삭제
 
 
 ```js
+export default function Control() {
+  // ...
+  const router = useRouter();
+  // ...
+  return (
+    // ...
+    <li><input type="button" value="delete" onClick={()=>{
+        fetch(`http://localhost:9999/topics/` + id, {
+          method: "DELETE"
+        })
+        .then(resp=>resp.json())
+        .then(result=>{
+          console.log(result);
+          router.push("/");
+          router.refresh();
+        })
+    //...
+  )
 ```
 
 
