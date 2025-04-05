@@ -553,14 +553,33 @@ export default function Create() {
 
 </br></br></br>
 
-# 
+# cache
 
+post를 해도 기존에 조회됐던 다른 정적 페이지들은 갱신이 되지 않는다.
 
 ```js
+fetch(`http://localhost:9999/topics`, options)
 ```
+이유는 fetch 명령을 사용하면 nextjs는 기본적으로 한 번 가져온 정보를 `.next` 패키지에 저장해둔다. -> cache hit로 reload해도 서버 통신을 안하기 때문에 화면이 갱신 안되는 것.
 
 
+nextjs docs -> building your application -> data fetching -> revalidating 보면 해결 방법 나오니 이후 참고.
 
+수업에선 cache 자체를 저장하지 않는 방법으로 구현. docs의 revalidating과 같은 위치의 caching 참고. 같은 위치의 fetching 에 나오는 방법 사용.
+
+`  const resp = await fetch("http://localhost:9999/topics", {next: {revalidate: 0}});
+` 
+
+혹은
+
+`const resp = await fetch("http://localhost:9999/topics", {cache: "no-store"});`
+
+실행후
+
+```js
+router.push(`/read/${lastId}`);
+router.refresh();
+```
 
 
 

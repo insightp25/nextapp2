@@ -7,7 +7,7 @@ export const metadata = {
 };
 
 export default async function RootLayout({ children }) {
-  const resp = await fetch("http://localhost:9999/topics")
+  const resp = await fetch("http://localhost:9999/topics", {next: {revalidate: 0}});
   const topics = await resp.json();
 
   return (
@@ -30,6 +30,9 @@ export default async function RootLayout({ children }) {
           <li><Link href="/update/1">update</Link></li>
           <li><input type="button" value="delete" /></li>
         </ul>
+        <br />
+        <br />
+        <br />
       </body>
     </html>
   );
