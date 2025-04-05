@@ -1,0 +1,26 @@
+{
+  "topics": [
+    {
+      "id": "1",
+      "title": "HTML",
+      "body": "HTML is ..."
+    },
+    {
+      "id": "f65a",
+      "title": "CSS",
+      "body": "CSS is..."
+    },
+    {
+      "id": "4d34",
+      "title": "Go",
+      "body": "Go is..."
+    }
+  ],
+  "posts": [
+    {
+      "id": "1",
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ]
+}
