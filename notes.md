@@ -588,6 +588,25 @@ router.refresh();
 
 </br></br></br>
 
+# update & delete 버튼 구현
+
+(참고)docs - functions - useParams
+
+1. useParams는 client component hook이라고 돼있으나, 요구사항상 바꿔야할 `layout.js`는 서버컴포넌트이다. -> 일부만 client component로 돌린다.
+2. `layout.js` 안의 특정 컴포넌트(function)만 client component로 돌릴 순 없다. -> 다른 별도의 파일로 분리한다(같은 파일 내에서 function을 분리하는 방법도 불가).
+3. 
+
+```js
+```
+
+
+
+
+
+
+
+</br></br></br>
+
 # 
 
 
@@ -608,6 +627,19 @@ router.refresh();
 ```js
 ```
 
+
+
+
+
+
+
+</br></br></br>
+
+# 
+
+
+```js
+```
 
 
 
