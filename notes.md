@@ -594,12 +594,6 @@ router.refresh();
 
 1. useParams는 client component hook이라고 돼있으나, 요구사항상 바꿔야할 `layout.js`는 서버컴포넌트이다. -> 일부만 client component로 돌린다.
 2. `layout.js` 안의 특정 컴포넌트(function)만 client component로 돌릴 순 없다. -> 다른 별도의 파일로 분리한다(같은 파일 내에서 function을 분리하는 방법도 불가).
-3. 
-
-```js
-```
-
-
 
 
 
@@ -607,10 +601,20 @@ router.refresh();
 
 </br></br></br>
 
-# 
+# 글 수정
 
 
 ```js
+export default async function Read(props) {
+    const resp = await fetch(`http://localhost:9999/topics/${props.params.id}`); // {next: {revalidate: 0}}나 {cache: "no-store"} 없이도 잘 refresh된다 -> nextjs 버전에 따라 no-store가 default로 바뀐 건지 확인 필요
+    const topic = await resp.json();
+    return (
+        <>
+            <h2>{topic.title}</h2>
+            {topic.body}
+        </>
+    )
+}
 ```
 
 
