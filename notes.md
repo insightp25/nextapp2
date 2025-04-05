@@ -501,10 +501,47 @@ export default async function Read(props) {
 
 </br></br></br>
 
-# 
-
-
+# 글 생성
 ```js
+// src/app/create/page.js
+"use client"
+export default function Create() {
+  const router = useRouter(); // client component 전용. 사용자가 보고있는 페이지를 방금 생성한 last id에 해당하는 글로 redirection하는 데에 사용.
+  return (
+    <form onSubmit={(e)=>{
+      e.preventDefault(); // 이게 없으면 기본설정에 따라 페이지가 전환된다.
+      const title = e.target.title.value; // target은 <form>
+      const body = e.target.body.value;
+      const options = { // POST 이므로 추가 필요
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({title, body})
+      }
+      fetch(`http://localhost:9999/topics`, options) // POST 이므로 options 추가 필요
+        .then(resp=>resp.json())
+        .then(result=>{
+          console.log(result);
+          const lastId = result.id; // 생성후 해당 페이지로의 redirection용
+          router.push(`/read/${lastId}`);
+
+      })
+    }}> // onClick은 사용자화 상호작용. server client에서 다루지 않는다.
+      <h2>create - src/app/create/page.js</h2>
+      <p>
+          <input type="text" name="title" placeholder="title" />
+      </p>
+      <p>
+        <textarea name="body" placeholder="body" />
+      </p>
+      <p>
+        <input type="submit" value="create" />
+      </p>
+    </form>
+  )
+}
+
 ```
 
 

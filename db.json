@@ -1,26 +1,46 @@
 {
-    "topics": [
-        {
-            "id": "1",
-            "title": "HTML",
-            "body": "HTML is ..."
-        },
-        {
-            "id": "2",
-            "title": "CSS",
-            "body": "CSS is ..."
-        },
-        {
-            "id": "3",
-            "title": "JavaScript",
-            "body": "JavaScript is ..."
-        }
-    ],
-    "posts": [
-        {
-            "id": "1",
-            "title": "json-server",
-            "author": "typicode"
-        }
-    ]
+  "topics": [
+    {
+      "id": "1",
+      "title": "HTML",
+      "body": "HTML is ..."
+    },
+    {
+      "id": "2",
+      "title": "CSS",
+      "body": "CSS is ..."
+    },
+    {
+      "id": "3",
+      "title": "JavaScript",
+      "body": "JavaScript is ..."
+    },
+    {
+      "id": "ea07",
+      "title": "python",
+      "body": "python is ..."
+    },
+    {
+      "id": "82ff",
+      "title": "python",
+      "body": "python is ..."
+    },
+    {
+      "id": "5bc3",
+      "title": "python",
+      "body": "python is ..."
+    },
+    {
+      "id": "89cb",
+      "title": "react",
+      "body": "react be..."
+    }
+  ],
+  "posts": [
+    {
+      "id": "1",
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ]
 }
